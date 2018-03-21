@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+            <input id="TextBox1"> 
+            <input id="TextBox2">
+            <button ID="Sum" OnClick="SendAjaxPOST()" value="SUM">SUM</button>
+
+        <script>
+            function SendAjaxPOST() {    
+                var xmlHttp;
+                xmlHttp = null;
+                xmlHttp = new XMLHttpRequest();
+                var a = document.getElementById("TextBox1").value;
+                var b = document.getElementById("TextBox2").value;
+                if (xmlHttp != null) {
+                    xmlHttp.onreadystatechange = function () {
+                        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                            document.write(xmlHttp.responseText);
+                        }
+                    }
+                    xmlHttp.open("POST", "http://localhost:50228/sum", true);
+                    xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    xmlHttp.send('TextBox1=' + a + '&TextBox2=' + b);
+                }
+            }
+        </script>
+</body>
+</html>
